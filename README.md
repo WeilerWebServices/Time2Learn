@@ -1,7 +1,5 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/WeilerWebServices/Time-To-Learn)
 
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/WeilerWebServices/Time-To-Learn)
-
 ![Time To Learn Logo](img/time-to-learn.png)
 
 # Table of contents
