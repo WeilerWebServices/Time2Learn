@@ -1,6 +1,6 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/WeilerWebServices/Time-To-Learn)
+[![Gitpod ready-to-code](https://src.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/WeilerWebServices/Time-To-Learn)
 
-![Time To Learn Logo](img/time-to-learn.png)
+![Time To Learn Logo](src/time-to-learn.png)
 
 # Table of contents
 
@@ -45,7 +45,7 @@ python -m pip install -r requirements.txt
 
 # What you will Learn
 
-![ABC's](img/abc/abc.png) ![Count to 100](img/math/count100.png)
+![ABC's](src/abc/abc.png) ![Count to 100](src/math/count100.png)
 
 ---
 
