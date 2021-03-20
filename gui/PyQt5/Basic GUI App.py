@@ -9,24 +9,24 @@ import sys
 def main():
     app = QApplication(sys.argv)
     win = QMainWindow()
-    win.setGeometry(1000,1000,1000,1000,) 
+    win.setGeometry(200,200,300,300) 
     win.setWindowTitle("My first window!") 
     
     label = QLabel(win)
     label.setText("my first label")
-    label.move(100, 250)  
+    label.move(50, 50)  
 
     win.show()
     sys.exit(app.exec_())
 
 main()  # make sure to call the function
 
-win.setGeometry(1000,1000,1000,1000,) # sets the windows x, y, width, height
+win.setGeometry(200,200,300,300) # sets the windows x, y, width, height
 win.setWindowTitle("My first window!")  # setting the window title
 	
 label = QLabel(win)
 label.setText("my first label")
-label.move(150, 150)  # x, y from top left hand corner.
+label.move(50, 50)  # x, y from top left hand corner.
 # If we want to see the label now we will need to show the window.
 
-jkwin.show()
+win.show()
