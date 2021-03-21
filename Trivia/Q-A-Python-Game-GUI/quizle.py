@@ -1,13 +1,13 @@
-
+#!python3
 # The "pass" command tells Python to do nothing.  It is simply a placeholder to ensure that the starter files run smoothly.
 # They are not needed in your completed program.  Replace them with your own code as you complete the assignment.
 
-
 # Import the required modules.
-from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
 import json
 import random
+from tkinter import *
+from tkinter import messagebox
 
 
 class ProgramGUI:
@@ -15,7 +15,7 @@ class ProgramGUI:
     def __init__(self,master):
         # This is the constructor of the class.
         # It is responsible for loading and reading the data file and creating the user interface.
-        # See Points 1 to 6 "Constructor of the GUI Class of quizle.py" section of the  brief. 
+        # See Points 1 to 6 "Constructor of the GUI Class of quizle.py" section of the  brief.
         self.master = master
         master.title("Quizle")
         master.minsize(width=400,height=150)
@@ -28,7 +28,7 @@ class ProgramGUI:
         except:
             print("Missing/Invalid file")
             master.destroy()
-            return    
+            return
 
         if len(self.data)<5:
             messagebox.showerror("Error","Insufficient number of questions")
@@ -63,7 +63,7 @@ class ProgramGUI:
        
     def loadQuestion(self):
         # This method is responsible for displaying a question in the GUI,
-        # as well as showing the special message for difficult questions and showing the user's current progress 
+        # as well as showing the special message for difficult questions and showing the user's current progress
         # See Point 1 of the "Methods in the GUI Class of quizle.py" section of the  brief.
         self.question_entry.focus_set()
         if self.instance == 0:

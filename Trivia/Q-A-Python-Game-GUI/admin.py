@@ -1,11 +1,9 @@
-
-
+#!pytho3
 
 # The "pass" command tells Python to "do nothing".
 # It is simply a placeholder to ensure that the starter files run smoothly.
 # They are not needed in your completed program.
 # Replace them with your own code as you complete the assignment.
-
 
 # Import the json module to allow us to read and write data in JSON format.
 import json,os
@@ -19,7 +17,7 @@ import json,os
 def inputInt(prompt):
     while True:
         try:
-            temp = int(input(prompt))    
+            temp = int(input(prompt))
             return temp
         except:
             continue
@@ -57,7 +55,7 @@ print('Welcome to the Quizle Admin Program.')
 
             
 
-with open('data.txt','r') as data_file:    
+with open('data.txt','r') as data_file:
     data_text_file = json.load(data_file)
 current_ques_list = []
 while True:
@@ -109,7 +107,7 @@ while True:
             if(os.stat("data.txt").st_size == 0):
                 saveChanges(data_list)
             else:
-                #with open('data.txt','r') as data_file:    
+                #with open('data.txt','r') as data_file:
                 #    data = json.load(data_file)
 
                 #print(data_text_file)
@@ -126,7 +124,7 @@ while True:
             else:
                 print("Current Question:")
                 for i in range(0,len(current_ques_list)):
-                    print('\t',i+1,")",current_ques_list[i]['question'])    
+                    print('\t',i+1,")",current_ques_list[i]['question'])
 
 
 
@@ -172,7 +170,7 @@ while True:
                     
                     #saveChanges(current_ques_list)
                     
-                    #with open('data.txt','r') as data_file:    
+                    #with open('data.txt','r') as data_file:
                     #    temp_list = json.load(data_file)
                     #print(data_text_file)
                     for i in range(len(data_text_file)):
