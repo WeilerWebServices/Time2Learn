@@ -1,0 +1,45 @@
+Multiple choice Quiz 
+Help file.
+---------------------------------
+This is a multiple choice quiz where four possible answers
+are given for each question, three of those answers are wrong,
+you have to find the correct answer to earn a point.
+
+You must choose an answer of A, B, C or D and then click on
+the corresponding button.
+
+If you get it correct you earn a point and we move on to the
+next question.
+
+If you get it wrong you do not earn a point and the answer
+is not revealed either, but we still move on to the next 
+question.
+
+Each time the quiz is run the answer order is mixed up as an
+added twist.
+
+Enjoy.
+
+-----------------------------------------------------------------------------
+Written using Python 3 and tkinter.
+
+This program is Freeware.
+You are free to copy and distribute this program
+and any quizes created with it as long as this help 
+file is retained and nothing in this section changed.
+
+I would hope that if you successfully create a quiz 
+with SQM, or use the source code, that you would
+be good enough to make a small contribution to 
+the author by clicking "Make a small donation" item
+from the SQM drop-down menu.
+This will spur me on to do more work on this project.
+Thanks.
+
+Source code and programs
+(c) Steve Shambles
+Oct 2020
+
+stevepython.wordpress.com
+pyshambles.blogger.com
+GitHub:steve shambles
