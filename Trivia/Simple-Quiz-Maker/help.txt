@@ -1,4 +1,4 @@
-Simple Quiz Maker V0.74 Oct 2020
+Simple Quiz Maker V0.60 July 2020
 
 Help file
 ---------------------------------
@@ -10,20 +10,18 @@ files:
 A logo image.
 A text file of questions.
 A text file of the multiple choice answers.
-(Optional images and\or music\speech mp3s for audio based questions)
+(Optional images for questions)
 
-Show Simple Quiz Maker where these files are, and
+Just show Simple Quiz Maker where these files are and
 it will do the rest for you.
 
-This version supports background music and image and music questions,
-see the end of this text for more details. 
+Ths version supports background music and image questions,
+see end of this text for more details. 
 
 -------------------------------------------------------
-If you look in the "example-quiz-files" folder you will
+If you look in the "example quiz files" folder you will
 find an example of these files that I made for my 
-Bottom Quiz and punk quiz.
-
-Try a test run using these files so you can
+Bottom Quiz. Try a test run using these files so you can
 get an idea of how SQM works.
 ---------------------------------------------------------
 
@@ -43,11 +41,11 @@ The image should be 450 pixels wide by 253 pixels high,
 although it will be resized by SQM when you load it in
 anyway so don't worry if you don't know how to do that.
 (although it could lose its shape in some cases if you 
-do not do it yourself.) If the image is close to 450x253
+do not do it yourself.) Also if the image is close to 450x253
 SQM will resize usually with no loss of shape.
 
 You can save your logo image in most formats, including:
-.jpg, bmp. png, etc. Any problems then please use png.
+.jpg, bmp. png, etc.
 
 
 In SQM in step 2 (see later for more detail on this),
@@ -78,21 +76,31 @@ Creating your answers File:
 ----------------------------
 Again, a simple text file created in Notepad.
 
-Each question MUST have FOUR possible answers in this file, 
+********************IMPORTANT*************************
+For this version of SQM you will need to have 
+FOUR BLANK LINES at the very start of the answers file.
+******************************************************
+
+Each question must have four possible answers in this file, 
 laid out in the same order as the questions.
 
 Each answer must have a line of its own. 
 You should use a maximum of about 50 characters per line.
 
-Be sure to make the FIRST answer of the four choices 
-the correct answer, as the program looks for that to 
+Be sure to make the first answer of the four choices 
+the correct answer as the program looks for that to 
 know what the correct answer is.
 
 If any of the above rules are broken the quiz will 
-not work properly, get answers wrong, or maybe crash.
+not work properly, get answers wrong or maybe crash.
 
-Example answers to the previous example questions above:
----------------------------------------------------------
+Example, (linked to above example questions)
+Note the 4 blank lines to start with:
+----------------------------------------------
+
+
+
+
 1066
 1166
 966
@@ -114,7 +122,7 @@ Remember that the first answer of the four MUST be the correct
 answer otherwise the program may get the answer wrong.
 
 Don't worry, the answer choices will be randomly  mixed
-up each time the quiz is run so as not to give the answers away.
+up each time the quiz is run.
 
 Save your answers to a text file called "answers.txt"
 
@@ -125,18 +133,18 @@ run Simple Quiz Maker and follow each step.
 
 Step 1: Name your quiz.
 ------------------------
-In the first entry box delete the words "Your quiz name" and
-replace it with the name of your quiz, examples:
+In the entry box delete the words "Your quiz name" and
+replace with the name of your quiz, examples:
 
 A General Knowledge quiz
-Python V3 Programmers Quiz 2020
+Python V3 Programmers Quiz 2019
 Telegraph poles of the 19th Century
 The table of elements quiz. By Greg
 
 The maximum characters you can use in the title is 39,
 if you use more it will be cut off.
 
-When you are ready, click the first yellow step 1 button to commit.
+When you are ready click the step 1 button to commit.
 
 A folder will now be created in the current directory
 using your quiz name. Your quiz name will also be displayed
@@ -158,8 +166,8 @@ way it will look in your finished quiz game.
 You can try out as many different images here as you want.
 
 When you are happy with your logo, 
-click the yellow button below the logo,
-"Click here to use the above image"
+click the button below the logo,
+"Click here to use this image"
 to commit the image, and move on to step 3.
 
 Step 3: Loading your questions and answers files.
@@ -181,7 +189,7 @@ to save all the settings to your quiz folder.
 Test Quiz:
 ----------
 Now give your quiz a trial run to see if it looks and works 
-as you had hoped by clicking on the puple "Test" button,
+as you had hoped by clicking on "Test",
 Just in case you didn't save settings first 
 SQM will do that for you now regardless.
 
@@ -203,7 +211,7 @@ Making a picture quiz:
 ----------------------
 If you want an image to be shown with a question
 then simply add a png file with the question number
-into the "images" folder that is already in your quiz folder.
+into your quiz folder.
 
 Example, if you want a picture to to be displayed for
 question 1 then save the desired image as "1.png".
@@ -214,58 +222,32 @@ You can have a picture for every question, some questions,
 or no questions at all.
 
 If no picture is linked to a question then your logo image
-will be displayed instead.
+will be used instead.
 
 Adding some background music:
 -----------------------------
 Simply find an mp3 of some music you like, 
 rename it sqm.mp3 and copy to your quiz folder.
 This will be automatically played on loop
-throughout the game (unless music questions are in play).
-
-Any music can be stopped or restarted from 
+throughout the game.
+The music vcan be stopped or restarted from 
 the drop-down menu.
 
-Adding A Music Question
+
+
 ------------------------- 
-SQM will also create a folder called "music-q" in your folder.
-Drop in any mp3 files that you want to play for a question.
-Just like the pictures, rename your mp3s so that they can be 
-linked to the question. 
-
-For example:
-If you want question 3 to play a sound like a song, a speech 
-or a sound effect, just name that particulat mp3 to 3.mp3 and 
-make sure it is found in the"music-q" folder.
-
-You can have no mp3s, all mp3s or just some mp3s,
-it's up to you.
--------------------------------------------------
 
 
 Let me know about any good quizzes that you make and
 I might highlight a link to it\them on my website.
 -------------------------------------------------
-
-
-Written using Python 3 and tkinter.
+Written using Python 3
 
 This program is Freeware.
 You are free to copy and distribute this program
-and any quizes created with it as long as this help 
-file is retained and unchanged.
-
-I would hope that if you successfully create a quiz 
-with SQM, or use the source code that you would
-be good enough to make a small contribution to 
-the author by clicking "Make a small donation" item
-from the SQM menu. This will spur me on to do more
-work on this project. Thanks.
+and any quizes created with it.
 
 Source code and programs
 (c) Steve Shambles
-Oct 2020
-
+July 2020
 stevepython.wordpress.com
-pyshambles.blogger.com
-GitHub:steve shambles

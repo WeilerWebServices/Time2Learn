@@ -20,26 +20,14 @@ added twist.
 
 Enjoy.
 
------------------------------------------------------------------------------
-Written using Python 3 and tkinter.
+-------------------------------------------------
+Written using Python 3
 
 This program is Freeware.
 You are free to copy and distribute this program
-and any quizes created with it as long as this help 
-file is retained and nothing in this section changed.
-
-I would hope that if you successfully create a quiz 
-with SQM, or use the source code, that you would
-be good enough to make a small contribution to 
-the author by clicking "Make a small donation" item
-from the SQM drop-down menu.
-This will spur me on to do more work on this project.
-Thanks.
+and any quizzes created with it.
 
 Source code and programs
 (c) Steve Shambles
-Oct 2020
-
+July 2020
 stevepython.wordpress.com
-pyshambles.blogger.com
-GitHub:steve shambles
