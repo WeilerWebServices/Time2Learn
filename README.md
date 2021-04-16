@@ -1,4 +1,16 @@
-<img align="center">![Time To Learn Logo](time-to-learn.png)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/https://github.com/WeilerWebServices/Time-To-Learn)
+<p align="center">
+  <a href="https://github.com/WeilerWebServices/Time-To-Learn">
+    <img src="time-to-learn.png">
+    <h1 align="center">Time To Learn</h1>
+  </a>
+</p>
+
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
+
+---
+
+![Time To Learn Logo]()
 
 # Table of contents
 
