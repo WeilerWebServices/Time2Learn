@@ -1,6 +1,4 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/https://github.com/WeilerWebServices/Time-To-Learn)
-
-![Time To Learn Logo](time-to-learn.png)
+<img align="center">![Time To Learn Logo](time-to-learn.png)
 
 # Table of contents
 
