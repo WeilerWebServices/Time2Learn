@@ -1,0 +1,11 @@
+gTTS
+tk
+PySimpleGUI
+PySide2
+PyQt5
+opencv-python
+numpy
+matplotlib
+flask
+pyinstaller
+py-quiz
