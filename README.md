@@ -1,16 +1,12 @@
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/https://github.com/WeilerWebServices/Time-To-Learn)
+# Time-To-Learn)
 <p align="center">
-  <a href="https://github.com/WeilerWebServices/Time-To-Learn">
-    <img src="time-to-learn.png">
-    <h1 align="center">Time To Learn</h1>
+  <a href="https://github.com/WeilerWebServices/Time2Learn">
+    <img src="time2learn.png">
+    <h1 align="center">Time2Learn</h1>
   </a>
 </p>
 
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
-
----
-
-![Time To Learn Logo]()
+![Time2Learn Logo](time2learn.png)
 
 # Table of contents
 
@@ -26,9 +22,9 @@
 
 ***Basic Learning App for Kids.***
 
-Learn online @ ➡ [Time To Learn](https://weilerwebservices.github.io/Time-To-Learn/)  ⬅
+Learn online @ ➡ [Time To Learn](https://weilerwebservices.github.io/Time2Learn/)  ⬅
 
-App URL ➡ https://weilerwebservices.github.io/Time-To-Learn/ ⬅ 
+App URL ➡ https://weilerwebservices.github.io/Time2Learn/ ⬅ 
 
 ---
 
@@ -44,9 +40,9 @@ Project is created with:
 This is ***ONLY*** for personal use as a simple learning app. You can Install with
 
 ```bash
-git clone https://github.com/WeilerWebServices/Time-To-Learn.git
+git clone https://github.com/WeilerWebServices/Time2Learn.git
 
-cd Time-To-Learn
+cd Time2Learn
 
 python -m pip install -r requirements.txt
 ```
@@ -64,7 +60,3 @@ python -m pip install -r requirements.txt
 You can feel free to discuss anything that you feel could be added or updated in the issues section.
 
 Pull requests are more than welcome!
-
----
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WeilerWebServices/Time-To-Learn)
