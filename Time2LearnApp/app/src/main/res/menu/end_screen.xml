@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nl.npipf.tgh.time2learn.EndScreen">
+    <item
+        android:id="@+id/menuCredits"
+        android:title="@string/txtCredits"></item>
+</menu>

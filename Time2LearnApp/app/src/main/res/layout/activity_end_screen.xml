@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="nl.npipf.tgh.time2learn.EndScreen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Game over!"
+        android:id="@+id/textAnswer2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/correct_answer"
+        android:id="@+id/textAnswerWas"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textHighscoreEnd"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="answer"
+        android:id="@+id/textCorrectAnswer"
+        android:layout_below="@+id/textAnswerWas"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/try_again"
+        android:id="@+id/butTryAgain"
+        android:layout_below="@+id/textCorrectAnswer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/highscore"
+        android:id="@+id/textHighscoreEnd"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/textGottenScore"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/current_score"
+        android:id="@+id/textGottenScore"
+        android:layout_below="@+id/textAnswer2"
+        android:layout_alignLeft="@+id/butTryAgain"
+        android:layout_alignStart="@+id/butTryAgain"
+        android:layout_marginTop="30dp" />
+</RelativeLayout>

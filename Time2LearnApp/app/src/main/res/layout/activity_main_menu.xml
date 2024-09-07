@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainMenu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/highscore"
+        android:id="@+id/textHighscore"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/analogClock"
+        android:layout_centerHorizontal="true" />
+
+    <AnalogClock
+        android:layout_width="@dimen/clock_dimens"
+        android:layout_height="@dimen/clock_dimens"
+        android:id="@+id/analogClock"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:dial="@drawable/clock_dial"
+        android:hand_hour="@drawable/clock_hour"
+        android:hand_minute="@drawable/clock_minute" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_game"
+        android:id="@+id/butStartGame"
+        android:layout_below="@+id/textHighscore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_5min_game"
+        android:id="@+id/butStart5Min"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/butStartGame"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

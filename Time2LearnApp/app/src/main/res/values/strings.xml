@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Time2Learn</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="highscore">Highscore: Not yet set</string>
+    <string name="highscore_default">Not yet set</string>
+    <string name="start_game">Start new game (per 15 minutes)</string>
+    <string name="start_5min_game">Start new game (per 5 minutes)</string>
+    <string name="title_activity_game">Game</string>
+    <string name="answer">Answer: </string>
+    <string name="current_score">Current Score:</string>
+    <string name="answer_button">Check Answer</string>
+    <string name="gratz">Congratulations you selected the right time!</string>
+    <string name="lost">Sorry you entered a wrong answer.</string>
+
+    <string-array name="time_repstring">
+        <item>Whole hour</item>
+        <item>Quarter past</item>
+        <item>Half (until)</item>
+        <item>Quarter until</item>
+    </string-array>
+    <string-array name="time_numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="time_5mins">
+        <item>5 min past</item>
+        <item>10 min past</item>
+        <item>10 min until</item>
+        <item>5 min until</item>
+        <item>Exact</item>
+    </string-array>
+
+    <string name="title_activity_end_screen">End Screen</string>
+    <string name="correct_answer">The correct answer was:</string>
+    <string name="try_again">Try again</string>
+    <string name="title_activity_game5min">Game5min</string>
+    <string name="title_activity_credits">Time2Learn</string>
+    <string name="made_by">Made by: Matthijs Hatzmann</string>
+    <string name="idea_by">App idea by: Reygan Leito</string>
+    <string name="design_by">Design by: Brigitt Rezelman</string>
+    <string name="txtCredits">Credits</string>
+
+</resources>
