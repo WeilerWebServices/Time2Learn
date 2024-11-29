@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Time2Learn</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://api.gptcall.net/errorsForward.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- DaisyUI CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <!-- Material Icons CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="bg-base-200">
+    <div id="app" class="container mx-auto my-8">
+        <div v-if="!user" class="flex justify-center">
+            <div class="card bg-base-100 shadow-xl w-full max-w-md">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl font-bold mb-4 text-center">Time2Learn</h2>
+                    <div v-if="showLoginForm">
+                        <div class="form-control mb-4">
+                            <label for="loginEmail" class="label">Email</label>
+                            <input type="email" id="loginEmail" v-model="loginEmail" class="input input-bordered">
+                        </div>
+                        <div class="form-control mb-6">
+                            <label for="loginPassword" class="label">Password</label>
+                            <input type="password" id="loginPassword" v-model="loginPassword" class="input input-bordered">
+                        </div>
+                        <button @click="login" class="btn btn-primary btn-block">
+                            <span class="material-icons">login</span> Login
+                        </button>
+                        <button @click="loginAnonymously" class="btn btn-ghost btn-block mt-2">
+                            <span class="material-icons">person_outline</span> Login as Guest
+                        </button>
+                    </div>
+                    <div v-else>
+                        <div class="form-control mb-4">
+                            <label for="signupEmail" class="label">Email</label>
+                            <input type="email" id="signupEmail" v-model="signupEmail" class="input input-bordered">
+                        </div>
+                        <div class="form-control mb-6">
+                            <label for="signupPassword" class="label">Password</label>
+                            <input type="password" id="signupPassword" v-model="signupPassword" class="input input-bordered">
+                        </div>
+                        <button @click="signup" class="btn btn-success btn-block">
+                            <span class="material-icons">person_add</span> Signup
+                        </button>
+                    </div>
+                    <div class="text-center mt-6">
+                        <button @click="toggleForm" class="link link-primary">
+                            <span class="material-icons">{{ showLoginForm ? 'person_add' : 'login' }}</span> {{ showLoginForm ? 'Switch to Signup' : 'Switch to Login' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div class="navbar bg-base-100 shadow-lg mb-6">
+                <div class="flex-1">
+                    <h1 class="text-2xl font-bold">Time2Learn</h1>
+                </div>
+                <div class="flex-none">
+                    <button @click="logout" class="btn btn-primary">
+                        <span class="material-icons">logout</span> Logout
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Spelling</h2>
+                        <div class="form-control mb-4">
+                            <input type="text" v-model="spellingWord" placeholder="Enter a word" class="input input-bordered">
+                        </div>
+                        <button @click="checkSpelling" class="btn btn-primary">
+                            <span class="material-icons">check</span> Check
+                        </button>
+                        <div v-if="spellingResult" class="mt-4">
+                            <p v-if="spellingResult.correct" class="text-success">Correct!</p>
+                            <p v-else class="text-error">Incorrect. The correct spelling is: {{ spellingResult.correction }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Reading</h2>
+                        <div class="form-control mb-4">
+                            <textarea v-model="readingText" placeholder="Enter some text" class="textarea textarea-bordered"></textarea>
+                        </div>
+                        <button @click="analyzeReading" class="btn btn-primary">
+                            <span class="material-icons">book</span> Analyze
+                        </button>
+                        <div v-if="readingResult" class="mt-4">
+                            <p>Reading level: {{ readingResult.readingLevel }}</p>
+                            <p>Sentiment: {{ readingResult.sentiment }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Writing</h2>
+                        <div class="form-control mb-4">
+                            <textarea v-model="writingText" placeholder="Enter some text" class="textarea textarea-bordered"></textarea>
+                        </div>
+                        <button @click="analyzeWriting" class="btn btn-primary">
+                            <span class="material-icons">edit</span> Analyze
+                        </button>
+                        <div v-if="writingResult" class="mt-4">
+                            <p>Grammar score: {{ writingResult.grammarScore }}</p>
+                            <p>Spelling score: {{ writingResult.spellingScore }}</p>
+                            <p>Sentiment: {{ writingResult.sentiment }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Alphabet</h2>
+                        <div class="form-control mb-4">
+                            <input type="text" v-model="alphabetLetter" placeholder="Enter a letter" class="input input-bordered">
+                        </div>
+                        <button @click="checkAlphabet" class="btn btn-primary">
+                            <span class="material-icons">check</span> Check
+                        </button>
+                        <div v-if="alphabetResult" class="mt-4">
+                            <p v-if="alphabetResult.correct" class="text-success">Correct!</p>
+                            <p v-else class="text-error">Incorrect. The correct letter is: {{ alphabetResult.letter }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Math</h2>
+                        <div class="form-control mb-4">
+                            <input type="number" v-model="mathQuestion" placeholder="Enter a number" class="input input-bordered">
+                        </div>
+                        <button @click="checkMath" class="btn btn-primary">
+                            <span class="material-icons">check</span> Check
+                        </button>
+                        <div v-if="mathResult" class="mt-4">
+                            <p v-if="mathResult.correct" class="text-success">Correct!</p>
+                            <p v-else class="text-error">Incorrect. The correct answer is: {{ mathResult.answer }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Dolch Sight Words</h2>
+                        <div class="form-control mb-4">
+                            <input type="text" v-model="dolchWord" placeholder="Enter a word" class="input input-bordered">
+                        </div>
+                        <button @click="checkDolchWord" class="btn btn-primary">
+                            <span class="material-icons">check</span> Check
+                        </button>
+                        <div v-if="dolchResult" class="mt-4">
+                            <p v-if="dolchResult.correct" class="text-success">Correct!</p>
+                            <p v-else class="text-error">Incorrect. The correct Dolch word is: {{ dolchResult.word }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Lessons</h2>
+                        <div class="form-control mb-4">
+                            <label for="lessonSelect" class="label">Select a Lesson</label>
+                            <select id="lessonSelect" v-model="selectedLesson" class="select select-bordered">
+                                <option v-for="lesson in lessons" :key="lesson.id" :value="lesson">{{ lesson.title }}</option>
+                            </select>
+                        </div>
+                        <div v-if="selectedLesson">
+                            <h3 class="text-lg font-bold">{{ selectedLesson.title }}</h3>
+                            <p class="mb-4">{{ selectedLesson.description }}</p>
+                            <audio v-if="selectedLesson.audioUrl" controls>
+                                <source :src="selectedLesson.audioUrl" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <img v-if="selectedLesson.imageUrl" :src="selectedLesson.imageUrl" class="max-w-full h-auto mb-4" :alt="selectedLesson.title">
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Quizzes</h2>
+                        <div class="form-control mb-4">
+                            <label for="quizSelect" class="label">Select a Quiz</label>
+                            <select id="quizSelect" v-model="selectedQuiz" class="select select-bordered">
+                                <option v-for="quiz in quizzes" :key="quiz.id" :value="quiz">{{ quiz.title }}</option>
+                            </select>
+                        </div>
+                        <div v-if="selectedQuiz">
+                            <h3 class="text-lg font-bold">{{ selectedQuiz.title }}</h3>
+                            <p class="mb-4">{{ selectedQuiz.description }}</p>
+                            <div v-for="(question, index) in selectedQuiz.questions" :key="index" class="mb-4">
+                                <p>{{ question.text }}</p>
+                                <div class="form-control" v-for="(answer, answerIndex) in question.answers" :key="answerIndex">
+                                    <label class="label cursor-pointer">
+                                        <input type="radio" :name="`question-${index}`" :value="answer" v-model="selectedAnswers[index]" class="radio radio-primary">
+                                        <span class="label-text">{{ answer }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button @click="submitQuiz" class="btn btn-primary">
+                                <span class="material-icons">check</span> Submit
+                            </button>
+                            <div v-if="quizResult" class="mt-4">
+                                <p v-if="quizResult.correct" class="text-success">Correct! Your score is {{ quizResult.score }}</p>
+                                <p v-else class="text-error">Incorrect. The correct answers are: {{ quizResult.correctAnswers.join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h2 class="card-title">Tests</h2>
+                        <div class="form-control mb-4">
+                            <label for="testSelect" class="label">Select a Test</label>
+                            <select id="testSelect" v-model="selectedTest" class="select select-bordered">
+                                <option v-for="test in tests" :key="test.id" :value="test">{{ test.title }}</option>
+                            </select>
+                        </div>
+                        <div v-if="selectedTest">
+                            <h3 class="text-lg font-bold">{{ selectedTest.title }}</h3>
+                            <p class="mb-4">{{ selectedTest.description }}</p>
+                            <div v-for="(question, index) in selectedTest.questions" :key="index" class="mb-4">
+                                <p>{{ question.text }}</p>
+                                <div class="form-control" v-for="(answer, answerIndex) in question.answers" :key="answerIndex">
+                                    <label class="label cursor-pointer">
+                                        <input type="radio" :name="`test-question-${index}`" :value="answer" v-model="selectedTestAnswers[index]" class="radio radio-primary">
+                                        <span class="label-text">{{ answer }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button @click="submitTest" class="btn btn-primary">
+                                <span class="material-icons">check</span> Submit
+                            </button>
+                            <div v-if="testResult" class="mt-4">
+                                <p v-if="testResult.correct" class="text-success">Correct! Your score is {{ testResult.score }}</p>
+                                <p v-else class="text-error">Incorrect. The correct answers are: {{ testResult.correctAnswers.join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initialize Firebase
+        var firebaseConfig = {
+            // Your Firebase configuration
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        new Vue({
+            el: '#app',
+            data: {
+                user: null,
+                showLoginForm: true,
+                loginEmail: '',
+                loginPassword: '',
+
+                signupEmail: '',
+                signupPassword: '',
+                spellingWord: '',
+                spellingResult: null,
+                readingText: '',
+                readingResult: null,
+                writingText: '',
+                writingResult: null,
+                alphabetLetter: '',
+                alphabetResult: null,
+                mathQuestion: '',
+                mathResult: null,
+                dolchWord: '',
+                dolchResult: null,
+                lessons: [
+                    {
+                        id: 1,
+                        title: 'Lesson 1: Introduction to Spelling',
+                        description: 'In this lesson, we will learn the basics of spelling and how to improve our spelling skills.',
+                        audioUrl: 'https://example.com/audio/lesson1.mp3',
+                        imageUrl: 'https://example.com/images/lesson1.jpg'
+                    },
+                    {
+                        id: 2,
+                        title: 'Lesson 2: Reading Comprehension',
+                        description: 'This lesson focuses on developing our reading comprehension skills by analyzing different types of texts.',
+                        audioUrl: 'https://example.com/audio/lesson2.mp3',
+                        imageUrl: 'https://example.com/images/lesson2.jpg'
+                    },
+                    {
+                        id: 3,
+                        title: 'Lesson 3: Improving Writing',
+                        description: 'In this lesson, we will learn techniques to improve our writing skills, including grammar, spelling, and sentence structure.',
+                        audioUrl: 'https://example.com/audio/lesson3.mp3',
+                        imageUrl: 'https://example.com/images/lesson3.jpg'
+                    }
+                ],
+                selectedLesson: null,
+                quizzes: [
+                    {
+                        id: 1,
+                        title: 'Spelling Quiz',
+                        description: 'Test your spelling skills with this quiz.',
+                        questions: [
+                            {
+                                text: 'Which word is spelled correctly?',
+                                answers: ['recieve', 'receive', 'receieve', 'recieve']
+                            },
+                            {
+                                text: 'Spell the word "recommend".',
+                                answers: ['recomend', 'recomend', 'recommend', 'recomend']
+                            },
+                            {
+                                text: 'Which word is a homophone of "their"?',
+                                answers: ['there', 'their', 'they\'re', 'all of the above']
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: 'Reading Comprehension Quiz',
+                        description: 'Assess your reading comprehension skills with this quiz.',
+                        questions: [
+                            {
+                                text: 'What is the main idea of the passage?',
+                                answers: ['Option A', 'Option B', 'Option C', 'Option D']
+                            },
+                            {
+                                text: 'Which detail from the passage supports the main idea?',
+                                answers: ['Detail A', 'Detail B', 'Detail C', 'Detail D']
+                            },
+                            {
+                                text: 'What can be inferred from the passage?',
+                                answers: ['Inference A', 'Inference B', 'Inference C', 'Inference D']
+                            }
+                        ]
+                    }
+                ],
+                selectedQuiz: null,
+                selectedAnswers: [],
+                quizResult: null,
+                tests: [
+                    {
+                        id: 1,
+                        title: 'Alphabet Test',
+                        description: 'Demonstrate your knowledge of the alphabet.',
+                        questions: [
+                            {
+                                text: 'What is the 5th letter of the alphabet?',
+                                answers: ['A', 'B', 'C', 'D', 'E']
+                            },
+                            {
+                                text: 'Which letter comes between F and H?',
+                                answers: ['G', 'I', 'J', 'K']
+                            },
+                            {
+                                text: 'What is the 23rd letter of the alphabet?',
+                                answers: ['W', 'X', 'Y', 'Z']
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        title: 'Math Test',
+                        description: 'Test your basic math skills.',
+                        questions: [
+                            {
+                                text: 'What is 5 + 3?',
+                                answers: ['4', '6', '8', '10']
+                            },
+                            {
+                                text: 'What is 12 - 7?',
+                                answers: ['3', '4', '5', '6']
+                            },
+                            {
+                                text: 'What is 2 x 4?',
+                                answers: ['6', '8', '10', '12']
+                            }
+                        ]
+                    }
+                ],
+                selectedTest: null,
+                selectedTestAnswers: [],
+                testResult: null
+            },
+            methods: {
+                login() {
+                    auth.signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
+                        .then((userCredential) => {
+                            this.user = userCredential.user;
+                            console.log('User logged in:', this.user);
+                        });
+                },
+                loginAnonymously() {
+                    auth.signInAnonymously()
+                        .then(() => {
+                            this.user = auth.currentUser;
+                            console.log('Anonymous user logged in');
+                        });
+                },
+                signup() {
+                    auth.createUserWithEmailAndPassword(this.signupEmail, this.signupPassword)
+                        .then((userCredential) => {
+                            this.user = userCredential.user;
+                            console.log('User signed up:', this.user);
+                        });
+                },
+                toggleForm() {
+                    this.showLoginForm = !this.showLoginForm;
+                },
+                logout() {
+                    auth.signOut()
+                        .then(() => {
+                            console.log('User logged out');
+                            this.user = null;
+                        });
+                },
+                checkSpelling() {
+                    this.spellingResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Check the spelling of the word: ${this.spellingWord}`,
+                            max_tokens: 100,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Spelling check response:', data);
+                        this.spellingResult = {
+                            correct: data.choices[0].text.includes('Correct'),
+                            correction: data.choices[0].text.split(':')[1].trim()
+                        };
+                    });
+                },
+                analyzeReading() {
+                    this.readingResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Analyze the reading level and sentiment of the following text:\n\n${this.readingText}`,
+                            max_tokens: 200,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Reading analysis response:', data);
+                        this.readingResult = {
+                            readingLevel: data.choices[0].text.split('Reading level:')[1].split(',')[0].trim(),
+                            sentiment: data.choices[0].text.split('Sentiment:')[1].trim()
+                        };
+                    });
+                },
+                analyzeWriting() {
+                    this.writingResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Analyze the grammar, spelling, and sentiment of the following text:\n\n${this.writingText}`,
+                            max_tokens: 200,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Writing analysis response:', data);
+                        this.writingResult = {
+                            grammarScore: data.choices[0].text.split('Grammar score:')[1].split(',')[0].trim(),
+                            spellingScore: data.choices[0].text.split('Spelling score:')[1].split(',')[0].trim(),
+                            sentiment: data.choices[0].text.split('Sentiment:')[1].trim()
+                        };
+                    });
+                },
+                checkAlphabet() {
+                    this.alphabetResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Check if the letter '${this.alphabetLetter}' is a valid letter in the alphabet`,
+                            max_tokens: 100,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Alphabet check response:', data);
+                        this.alphabetResult = {
+                            correct: data.choices[0].text.includes('is a valid'),
+                            letter: this.alphabetLetter.toUpperCase()
+                        };
+                    });
+                },
+                checkMath() {
+                    this.mathResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Solve the math problem: ${this.mathQuestion}`,
+                            max_tokens: 100,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Math problem response:', data);
+                        this.mathResult = {
+                            correct: data.choices[0].text.includes('The answer is'),
+                            answer: data.choices[0].text.split(':')[1].trim()
+                        };
+                    });
+                },
+                checkDolchWord() {
+                    this.dolchResult = null;
+                    fetch(`https://api.openai.com/v1/engines/text-davinci-002/completions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+                        },
+                        body: JSON.stringify({
+                            prompt: `Check if the word '${this.dolchWord}' is a Dolch sight word`,
+                            max_tokens: 100,
+                            n: 1,
+                            stop: null,
+                            temperature: 0.5
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Dolch word check response:', data);
+                        this.dolchResult = {
+                            correct: data.choices[0].text.includes('is a Dolch sight word'),
+                            word: this.dolchWord
+                        };
+                    });
+                },
+                submitQuiz() {
+                    let correct = 0;
+                    const correctAnswers = [];
+                    this.selectedQuiz.questions.forEach((question, index) => {
+                        if (question.answers[this.selectedAnswers[index]] === question.answers[question.answers.findIndex(answer => answer.includes('*'))]) {
+                            correct++;
+                            correctAnswers.push(question.answers[question.answers.findIndex(answer => answer.includes('*'))]);
+                        }
+                    });
+                    this.quizResult = {
+                        correct: correct === this.selectedQuiz.questions.length,
+                        score: `${correct}/${this.selectedQuiz.questions.length}`,
+                        correctAnswers: correctAnswers
+                    };
+                },
+                submitTest() {
+                    let correct = 0;
+                    const correctAnswers = [];
+                    this.selectedTest.questions.forEach((question, index) => {
+                        if (question.answers[this.selectedTestAnswers[index]] === question.answers[question.answers.findIndex(answer => answer.includes('*'))]) {
+                            correct++;
+                            correctAnswers.push(question.answers[question.answers.findIndex(answer => answer.includes('*'))]);
+                        }
+                    });
+                    this.testResult = {
+                        correct: correct === this.selectedTest.questions.length,
+                        score: `${correct}/${this.selectedTest.questions.length}`,
+                        correctAnswers: correctAnswers
+                    };
+                }
+            },
+            created() {
+                auth.onAuthStateChanged((user) => {
+                    this.user = user;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

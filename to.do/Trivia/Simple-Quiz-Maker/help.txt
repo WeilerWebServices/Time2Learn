@@ -1,0 +1,253 @@
+Simple Quiz Maker V0.60 July 2020
+
+Help file
+---------------------------------
+What you need to create your own stand alone quiz program:
+
+A name for your quiz.
+
+files:
+A logo image.
+A text file of questions.
+A text file of the multiple choice answers.
+(Optional images for questions)
+
+Just show Simple Quiz Maker where these files are and
+it will do the rest for you.
+
+Ths version supports background music and image questions,
+see end of this text for more details. 
+
+-------------------------------------------------------
+If you look in the "example quiz files" folder you will
+find an example of these files that I made for my 
+Bottom Quiz. Try a test run using these files so you can
+get an idea of how SQM works.
+---------------------------------------------------------
+
+
+Creating A logo image
+----------------------
+Use graphics editing software like Photoshop Elements, or 
+any graphic editing software that allows you to
+Load in your image and place any text you want on it.
+
+You can find free photos and images at pixabay.com.
+
+Then apply the name of your quiz onto the image.
+Example, "The Python Programming Quiz, By Geoff McBulgy".
+
+The image should be 450 pixels wide by 253 pixels high,
+although it will be resized by SQM when you load it in
+anyway so don't worry if you don't know how to do that.
+(although it could lose its shape in some cases if you 
+do not do it yourself.) Also if the image is close to 450x253
+SQM will resize usually with no loss of shape.
+
+You can save your logo image in most formats, including:
+.jpg, bmp. png, etc.
+
+
+In SQM in step 2 (see later for more detail on this),
+choose the image file you created and it will be 
+displayed as you will see it in your finished quiz.
+
+
+Creating a questions File:
+--------------------------
+This is just a standard text file that you can create
+in notepad, or a similar app.
+
+* Each question must be on one line only.
+* No blank lines allowed.
+* Maximum line length is about 80 characters.
+* The file must be named and saved as "questions.txt".
+
+Example:
+What year was the battle of Hastings?
+What is two score and ten?
+How long did queen Victoria reign?
+What year did the Titanic sink?
+
+Save your questions to a file called "questions.txt"
+
+
+Creating your answers File:
+----------------------------
+Again, a simple text file created in Notepad.
+
+********************IMPORTANT*************************
+For this version of SQM you will need to have 
+FOUR BLANK LINES at the very start of the answers file.
+******************************************************
+
+Each question must have four possible answers in this file, 
+laid out in the same order as the questions.
+
+Each answer must have a line of its own. 
+You should use a maximum of about 50 characters per line.
+
+Be sure to make the first answer of the four choices 
+the correct answer as the program looks for that to 
+know what the correct answer is.
+
+If any of the above rules are broken the quiz will 
+not work properly, get answers wrong or maybe crash.
+
+Example, (linked to above example questions)
+Note the 4 blank lines to start with:
+----------------------------------------------
+
+
+
+
+1066
+1166
+966
+866
+30
+40
+50
+60
+64 years
+54 years
+34 years
+24 years
+1912
+1812
+2012
+1712
+
+Remember that the first answer of the four MUST be the correct
+answer otherwise the program may get the answer wrong.
+
+Don't worry, the answer choices will be randomly  mixed
+up each time the quiz is run.
+
+Save your answers to a text file called "answers.txt"
+
+So, the answers were, 1066,30,64 years,1912.
+
+Now that you have your files ready,
+run Simple Quiz Maker and follow each step.
+
+Step 1: Name your quiz.
+------------------------
+In the entry box delete the words "Your quiz name" and
+replace with the name of your quiz, examples:
+
+A General Knowledge quiz
+Python V3 Programmers Quiz 2019
+Telegraph poles of the 19th Century
+The table of elements quiz. By Greg
+
+The maximum characters you can use in the title is 39,
+if you use more it will be cut off.
+
+When you are ready click the step 1 button to commit.
+
+A folder will now be created in the current directory
+using your quiz name. Your quiz name will also be displayed
+in the window bar of your finished quiz and used to name the 
+executable file that runs your quiz.
+
+Step 2: Load your logo image.
+----------------------------
+Click on the step 2 button, this will pop up a file selector
+for you to choose the image that you created earlier.
+
+If the image is not 450x253 pixels it will be resized and
+hopefully will not lose its shape. If it looks odd then
+you will have re-edit it if you can.
+
+Your logo will now be displayed in the exact
+way it will look in your finished quiz game.
+
+You can try out as many different images here as you want.
+
+When you are happy with your logo, 
+click the button below the logo,
+"Click here to use this image"
+to commit the image, and move on to step 3.
+
+Step 3: Loading your questions and answers files.
+--------------------------------------------------
+Click on the "..." button to the right of 
+the "your questions file" input box.
+
+A file selector will pop up and you should be careful
+to choose the correct file that you created earlier called  "questions.txt".
+
+Now do the same for the answers.txt file using the
+second "..." button.
+
+Finishing up:
+-------------
+Once you have completed all three steps click on "save" 
+to save all the settings to your quiz folder.
+
+Test Quiz:
+----------
+Now give your quiz a trial run to see if it looks and works 
+as you had hoped by clicking on "Test",
+Just in case you didn't save settings first 
+SQM will do that for you now regardless.
+
+View Your quiz folder:
+----------------------
+All the files that you need to run your quiz on its own 
+can be found in a single folder with the name of your quiz, 
+click on: 
+"View" to see that folders contents.
+
+Your quiz program is now a standalone portable program, 
+as long as all the files remain together in the folder.
+
+You can copy that folder anywhere and run 
+yourquizname.exe
+and your quiz will happily run from anywhere.
+
+Making a picture quiz:
+----------------------
+If you want an image to be shown with a question
+then simply add a png file with the question number
+into your quiz folder.
+
+Example, if you want a picture to to be displayed for
+question 1 then save the desired image as "1.png".
+Again if you want a pic for question 5, 5.png
+and so on.
+
+You can have a picture for every question, some questions,
+or no questions at all.
+
+If no picture is linked to a question then your logo image
+will be used instead.
+
+Adding some background music:
+-----------------------------
+Simply find an mp3 of some music you like, 
+rename it sqm.mp3 and copy to your quiz folder.
+This will be automatically played on loop
+throughout the game.
+The music vcan be stopped or restarted from 
+the drop-down menu.
+
+
+
+------------------------- 
+
+
+Let me know about any good quizzes that you make and
+I might highlight a link to it\them on my website.
+-------------------------------------------------
+Written using Python 3
+
+This program is Freeware.
+You are free to copy and distribute this program
+and any quizes created with it.
+
+Source code and programs
+(c) Steve Shambles
+July 2020
+stevepython.wordpress.com

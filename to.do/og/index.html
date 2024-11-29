@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time2Learn - K-12 Learning App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Time2Learn</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#lessons">Lessons</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#progress">Progress</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to Time2Learn</h2>
+            <p>Discover a new way of learning with our interactive K-12 lessons and quizzes.</p>
+            <button id="login-btn">Login</button>
+            <button id="create-account-btn">Create Account</button>
+        </section>
+
+        <section id="lessons">
+            <h2>Lessons</h2>
+            <div id="lesson-container"></div>
+        </section>
+
+        <section id="quiz">
+            <h2>Quiz</h2>
+            <div id="quiz-container"></div>
+        </section>
+
+        <section id="progress">
+            <h2>Progress</h2>
+            <div id="progress-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Time2Learn. All rights reserved.</p>
+    </footer>
+
+    <py-script>
+from js import document
+
+def login(event):
+    # Perform login logic here
+    print("Login successful")
+
+def create_account(event):
+    # Perform account creation logic here
+    print("Account created successfully")
+    
+document.getElementById("login-btn").addEventListener("click", login)
+document.getElementById("create-account-btn").addEventListener("click", create_account)
+    </py-script>
+</body>
+</html>

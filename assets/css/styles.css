@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    padding-top: 50px;
+}
+
+.modal-dialog {
+    max-width: 400px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
